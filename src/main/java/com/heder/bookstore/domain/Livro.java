@@ -1,12 +1,33 @@
 package com.heder.bookstore.domain;
 
-public class Livro {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+//Anotação para que o sistema já crie uma tabela no banco de dados com esta classe
+@Entity
+
+
+public class Livro implements Serializable {
+	
+	//Atributo para serializable
+	private static final long serialVersionUID = 1L;
+	
 	// Atributos conforme consta no banco de dados
+	@Id //anotação para definbir id como chave primária
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
 	private String nomeAutor;
 	private String texto;
-	// Atributo para apresentar a categoria conforme definido no DER
+	// Atributo para apresentar a categoria conforme definido no diagrama de classe
+	@ManyToOne //anotação de vinculo entre as classe (muitos para um)
+	@JoinColumn(name = "CategoriaId") //Anotação para criação da coluna de id categoria na lista.
 	private Categoria categoria;
 	
 	// Métodos contrutor para esta super classe

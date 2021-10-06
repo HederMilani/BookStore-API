@@ -1,14 +1,32 @@
 package com.heder.bookstore.domain;
 
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Categoria {
+//Anotação para que o sistema já crie uma tabela no banco de dados com esta classe
+@Entity
+
+public class Categoria implements Serializable {
+	
+	//Atributo para serializable
+	private static final long serialVersionUID = 1L;
+	
 	// Atributos conforme consta no banco de dados
+	@Id //anotação para definbir id como chave primária
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String descricao;
 	// Atributo para fazer relação conforme DER já compondo uma lista com os livros
+	@OneToMany(mappedBy = "caategoria") //Anotação para vinculo entre as classes com mapeamento pelo atributo categoria
 	private List<Livro> livro = new ArrayList<>();
 
 	// Métodos contrutores para está super classe
