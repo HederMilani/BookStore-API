@@ -26,7 +26,7 @@ public class Categoria implements Serializable {
 	private String nome;
 	private String descricao;
 	// Atributo para fazer relação conforme DER já compondo uma lista com os livros
-	@OneToMany(mappedBy = "caategoria") //Anotação para vinculo entre as classes com mapeamento pelo atributo categoria
+	@OneToMany(mappedBy = "categoria") //Anotação para vinculo entre as classes com mapeamento pelo atributo categoria
 	private List<Livro> livro = new ArrayList<>();
 
 	// Métodos contrutores para está super classe
@@ -77,7 +77,8 @@ public class Categoria implements Serializable {
 	}
 
 	// Método hash code (realiza a comparação do objeto em memória
-	public int hasCode() {
+	@Override
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());

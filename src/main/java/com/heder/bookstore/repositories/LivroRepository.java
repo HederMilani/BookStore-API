@@ -1,5 +1,7 @@
 package com.heder.bookstore.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +11,5 @@ import com.heder.bookstore.domain.*;
 
 public interface LivroRepository extends JpaRepository<Categoria, Integer>{ //primeiro argumento é a classe que seráq implementada; Segundo tipo primitivo de dado do id 
 
+	void saveAll(List<Livro> asList); 
 }
