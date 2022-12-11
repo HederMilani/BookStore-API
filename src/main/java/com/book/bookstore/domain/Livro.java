@@ -7,5 +7,7 @@ public class Livro {
 	private String name_author;
 	private String text;
 
+	private Categoria categoria;
 
+	
 }
