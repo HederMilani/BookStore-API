@@ -25,4 +25,8 @@ public class CategoriaService {
 		return repository.findAll();
 	}
 	
+	public Categoria create(Categoria obj){
+		obj.setId(null);
+		return repository.save(obj);
+	}
 }
