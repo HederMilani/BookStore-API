@@ -16,6 +16,7 @@ import com.book.bookstore.domain.Categoria;
 import com.book.bookstore.dtos.CategoriaDTO;
 import com.book.bookstore.services.CategoriaService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -43,7 +44,12 @@ public class CategoriaResource {
 	public ResponseEntity<Categoria> create(@RequestBody Categoria obj){
 		obj = service.create(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+		return ResponseEntity.created(uri).body(obj); //Se trocar '.body' por '.build' ele ira criar e não retorna a nova categoria na API
 	}
 	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO objDTO){
+		Categoria newObj = service.update(id, objDTO);
+		return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+	}
 }
