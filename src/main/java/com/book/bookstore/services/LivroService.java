@@ -24,5 +24,24 @@ public class LivroService {
 	public List<Livro> findAll(){
 		return repository.findAll();
 	}
+
+	public Livro create(Livro livro){
+		livro.setId(null);
+		return repository.save(livro);
+	}
+
+	public Livro update(Integer id, Livro obj){
+		Livro livro = findById(id);
+		livro.setTitle(obj.getTitle());
+		livro.setNameAuthor(obj.getNameAuthor());
+		livro.setText(obj.getText());
+		livro.setCategoria(obj.getCategoria());
+		return repository.save(livro);
+	}
+
+	public void deletar(Integer id){
+		findById(id);
+		repository.deleteById(id);
+	}
 	
 }
