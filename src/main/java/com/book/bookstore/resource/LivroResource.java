@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.book.bookstore.domain.Livro;
-import com.book.bookstore.dtos.LivroDTO;
 import com.book.bookstore.services.LivroService;
 
 import jakarta.validation.Valid;
