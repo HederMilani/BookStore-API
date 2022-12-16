@@ -32,7 +32,7 @@ public class Livro implements Serializable {
 	private String nameAuthor;
 
 	@NotEmpty(message = "Campo Texto é Requerido!")
-	@Length(min = 10, message = "O campo Texto de ve ter no minino 10 caracteres.")
+	@Length(min = 1, max=2000000, message = "O campo Texto deve ter no minino 10 caracteres.")
 	private String text;
 
 	@JsonIgnore
