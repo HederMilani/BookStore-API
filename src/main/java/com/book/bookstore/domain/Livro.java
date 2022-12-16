@@ -115,8 +115,3 @@ public class Livro implements Serializable {
 		return true;
 	}
 }
-package com.book.bookstore.domain;
-
-public class Livro {
-	
-}
