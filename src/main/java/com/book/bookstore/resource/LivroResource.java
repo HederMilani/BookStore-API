@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.book.bookstore.domain.Livro;
+import com.book.bookstore.dtos.LivroDTO;
 import com.book.bookstore.services.LivroService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -28,6 +31,7 @@ public class LivroResource {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Livro> findById(@PathVariable Integer id){
 		Livro livro = service.findById(id);
+		//LivroDTO livroDTO = new LivroDTO(livro.getId(), livro.getTitle(), livro.getNameAuthor(), livro.getText(), livro.getCategoria().getId());
 		return ResponseEntity.ok().body(livro);
 	}
 
@@ -38,14 +42,14 @@ public class LivroResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Livro> create(@RequestBody Livro livro){
+	public ResponseEntity<Livro> create(@Valid @RequestBody Livro livro){
 		livro = service.create(livro);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(livro.getId()).toUri();
 		return ResponseEntity.created(uri).body(livro);
 	}
 
 	@PatchMapping(value = "/{id}")
-	public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro livro){
+	public ResponseEntity<Livro> update(@Valid @PathVariable Integer id, @RequestBody Livro livro){
 		Livro newLivro = service.update(id, livro);
 		return ResponseEntity.ok().body(newLivro);
 	}
